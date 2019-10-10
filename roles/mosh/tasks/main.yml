@@ -49,3 +49,17 @@
     - configure
     - dotfiles
     - git
+
+- name: Configure aws
+  include_tasks: configure/aws.yml
+  tags:
+    - configure
+    - dotfiles
+    - aws
+
+- name: Configure vault
+  include_tasks: configure/vault_files.yml
+  tags:
+    - configure
+    - dotfiles
+    - vault
