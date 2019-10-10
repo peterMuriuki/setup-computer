@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-
+# credits: https://github.com/wincent/wincent
 [alias]
 	abbrev = !sh -c 'git rev-parse --short ${1-`echo HEAD`}' -
 	ack = grep --break --heading
