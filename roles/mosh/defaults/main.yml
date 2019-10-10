@@ -1,4 +1,7 @@
 ---
+# user
+mosh_system_user: mosh
+
 # git
 mosh_git_user_email: kjayanoris@gmail.com
 mosh_git_user_name: Kelvin Jayanoris
