@@ -41,3 +41,6 @@ mosh_system_wide_packages:
   - tmux
   - whois
   - xclip
+
+# aws
+mosh_aws_region: eu-west-1
