@@ -1,4 +1,12 @@
 ---
+- name: Install system packages
+  include_tasks: install/packages.yml
+  tags:
+    - install
+    - packages
+  when:
+    - mosh_install_system_wide_packages == true
+
 - name: Install python
   include_tasks: install/python.yml
   tags:
