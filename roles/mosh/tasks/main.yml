@@ -1,4 +1,22 @@
 ---
+- name: Install python
+  include_tasks: install/python.yml
+  tags:
+    - install
+    - lang
+    - python
+  when:
+    - mosh_install_python == true
+
+- name: Configure python
+  include_tasks: configure/python.yml
+  tags:
+    - configure
+    - lang
+    - python
+  when:
+    - mosh_install_python == true
+
 - name: Install fish
   include_tasks: install/fish.yml
   tags:
