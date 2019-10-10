@@ -6,3 +6,6 @@ mosh_system_user: mosh
 mosh_git_user_email: kjayanoris@gmail.com
 mosh_git_user_name: Kelvin Jayanoris
 
+# fish
+mosh_install_fish: true
+mosh_fish_ppa: ppa:fish-shell/release-3
