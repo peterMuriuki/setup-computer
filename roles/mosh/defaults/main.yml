@@ -10,3 +10,6 @@ mosh_git_user_name: Kelvin Jayanoris
 mosh_install_fish: true
 mosh_fish_ppa: ppa:fish-shell/release-3
 mosh_update_omf: false
+mosh_fish_themes:
+  - zish
+mosh_active_fish_theme: zish
