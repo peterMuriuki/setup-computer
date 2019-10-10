@@ -1,0 +1,22 @@
+---
+- name: Add python PPA
+  apt_repository:
+    repo: "{{ mosh_python_ppa }}"
+    state: present
+  become: true
+  become_user: root
+  when:
+    - mosh_python_ppa is defined
+    - mosh_python_ppa != ''
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install python
+  apt:
+    name: '{{ item }}'
+    state: latest
+    update_cache: true
+    cache_valid_time: 600
+  loop: '{{ mosh_python_versions }}'

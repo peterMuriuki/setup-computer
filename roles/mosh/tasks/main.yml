@@ -1,0 +1,80 @@
+---
+- name: Install system packages
+  include_tasks: install/packages.yml
+  tags:
+    - install
+    - packages
+  when:
+    - mosh_install_system_wide_packages == true
+
+- name: Install python
+  include_tasks: install/python.yml
+  tags:
+    - install
+    - lang
+    - python
+  when:
+    - mosh_install_python == true
+
+- name: Configure python
+  include_tasks: configure/python.yml
+  tags:
+    - configure
+    - lang
+    - python
+  when:
+    - mosh_install_python == true
+
+- name: Install fish
+  include_tasks: install/fish.yml
+  tags:
+    - install
+    - shell
+    - fish
+  when:
+    - mosh_install_fish == true
+
+- name: Configure fish
+  include_tasks: configure/fish.yml
+  tags:
+    - configure
+    - shell
+    - fish
+  when:
+    - mosh_install_fish == true
+
+- name: Configure git
+  include_tasks: configure/git.yml
+  tags:
+    - configure
+    - dotfiles
+    - git
+  when:
+    - mosh_configure_git == true
+
+- name: Configure aws
+  include_tasks: configure/aws.yml
+  tags:
+    - configure
+    - dotfiles
+    - aws
+  when:
+    - mosh_configure_aws == true
+
+- name: Configure vault
+  include_tasks: configure/vault_files.yml
+  tags:
+    - configure
+    - dotfiles
+    - vault
+  when:
+    - mosh_configure_vault == true
+
+- name: Configure ssh key
+  include_tasks: configure/ssh.yml
+  tags:
+    - configure
+    - security
+    - ssh
+  when:
+    - mosh_copy_ssh_key == true

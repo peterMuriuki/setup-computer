@@ -1,0 +1,29 @@
+---
+- name: Register pip check
+  shell: pip --version
+  register: pip_version
+  failed_when: pip_version.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Download pip
+  get_url:
+    url: '{{ mosh_pip_download_url }}'
+    dest: '{{ mosh_pip_download_location }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  when:
+    - pip_version.rc > 1
+
+- name: Install pip
+  shell: '{{ mosh_default_python_version }} {{ mosh_pip_download_location }} --user'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  when:
+    - pip_version.rc > 1
+
+- name: Install Python packages using pip
+  shell: "pip install --upgrade {{ item }} --user"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  loop: "{{ mosh_python_packages }}"

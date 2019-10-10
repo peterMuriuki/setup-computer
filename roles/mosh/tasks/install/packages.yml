@@ -1,0 +1,12 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install packages
+  apt:
+    name: '{{ item }}'
+    state: latest
+    update_cache: true
+    cache_valid_time: 600
+  loop: '{{ mosh_system_wide_packages }}'

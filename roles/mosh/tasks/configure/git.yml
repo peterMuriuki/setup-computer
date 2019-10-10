@@ -1,0 +1,8 @@
+---
+- name: Copy git config file
+  template:
+    src: templates/.gitconfig.j2
+    dest: '{{ mosh_home_directory }}/.gitconfig'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'

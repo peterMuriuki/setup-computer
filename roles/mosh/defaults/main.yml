@@ -1,0 +1,60 @@
+---
+# user
+mosh_system_user: mosh
+
+# git
+mosh_configure_git: true
+mosh_git_user_email: kjayanoris@gmail.com
+mosh_git_user_name: Kelvin Jayanoris
+
+# python
+mosh_install_python: true
+mosh_python_ppa: ppa:deadsnakes/ppa
+mosh_default_python_version: python3.6
+mosh_python_versions:
+  - '{{ mosh_default_python_version }}'
+  - python3.7
+mosh_python_packages:
+  - pip
+  - pip-tools
+  - cookiecutter
+  - ansible-vault
+
+# fish
+mosh_install_fish: true
+mosh_fish_ppa: ppa:fish-shell/release-3
+mosh_update_omf: false
+mosh_active_fish_theme: zish
+mosh_fish_plugins:
+  - '{{ mosh_active_fish_theme }}'
+  - python # https://github.com/oh-my-fish/plugin-python
+  - bang-bang # https://github.com/oh-my-fish/plugin-bang-bang
+  - fonts  # https://github.com/derekstavis/plugin-fonts
+  - fuck  # https://github.com/RubieV/plugin-fuck
+  - kill-on-port  # https://github.com/vincentjames501/fish-kill-on-port
+  - bass  # https://github.com/edc/bass
+
+# system packages
+mosh_install_system_wide_packages: true
+mosh_system_wide_packages:
+  - git
+  - git-extras
+  - tmux
+  - whois
+  - xclip
+
+# aws
+mosh_configure_aws: true
+mosh_aws_region: eu-west-1
+mosh_aws_access_key_id: hunter2
+mosh_aws_secret_access_key: hunter2
+
+# vault
+mosh_configure_vault: true
+mosh_vault_password: hunter2
+mosh_vault_token: hunter2
+
+# ssh
+mosh_copy_ssh_key: true
+mosh_vault_ssh_key:
+mosh_ssh_key_filename: id_ed25519
