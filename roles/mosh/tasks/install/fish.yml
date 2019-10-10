@@ -8,7 +8,6 @@
   when:
     - mosh_fish_ppa is defined
     - mosh_fish_ppa != ''
-    - mosh_install_fish == true
 
 - name: Update apt cache
   apt:
