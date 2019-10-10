@@ -1,6 +1,21 @@
 ---
+- name: Install fish
+  include_tasks: install/fish.yml
+  tags:
+    - install
+    - shell
+    - fish
+
+- name: Configure fish
+  include_tasks: configure/fish.yml
+  tags:
+    - configure
+    - shell
+    - fish
+
 - name: Configure git
   include_tasks: configure/git.yml
   tags:
+    - configure
     - dotfiles
     - git
