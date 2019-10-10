@@ -1,2 +1,6 @@
 ---
-# tasks file for mosh
+- name: Configure git
+  include_tasks: configure/git.yml
+  tags:
+    - dotfiles
+    - git
