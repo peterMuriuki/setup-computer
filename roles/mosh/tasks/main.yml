@@ -5,6 +5,8 @@
     - install
     - shell
     - fish
+  when:
+    - mosh_install_fish == true
 
 - name: Configure fish
   include_tasks: configure/fish.yml
@@ -12,6 +14,8 @@
     - configure
     - shell
     - fish
+  when:
+    - mosh_install_fish == true
 
 - name: Configure git
   include_tasks: configure/git.yml
