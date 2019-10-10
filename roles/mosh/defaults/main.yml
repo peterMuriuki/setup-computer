@@ -44,3 +44,10 @@ mosh_system_wide_packages:
 
 # aws
 mosh_aws_region: eu-west-1
+mosh_aws_access_key_id: hunter2
+mosh_aws_secret_access_key: hunter2
+
+# vault
+mosh_vault_password: hunter2
+mosh_vault_token: hunter2
+
