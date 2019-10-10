@@ -8,3 +8,38 @@
     name: '{{ mosh_system_user }}'
     shell: '{{ fish.stdout }}'
   become: yes
+
+- name: Register omf check
+  shell: omf version
+  register: omf_version
+  failed_when: omf_version.rc == 2
+  args:
+    executable: '{{ fish.stdout }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Download oh-my-fish
+  get_url:
+    url: '{{ mosh_omf_download_url }}'
+    dest: '{{ mosh_omf_download_location }}'
+  when:
+    - omf_version.rc > 1
+
+- name: Install oh-my-fish
+  shell: fish {{ mosh_omf_download_location }} --path={{ mosh_omf_path }} --config={{ mosh_omf_config_path }} --noninteractive --verbose
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+  when:
+    - omf_version.rc > 1
+
+- name: Update oh-my-fish
+  shell: omf update
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+  when:
+    - omf_version.rc <= 1
+    - mosh_update_omf == true
