@@ -1,0 +1,22 @@
+---
+- name: Add fish PPA
+  apt_repository:
+    repo: "{{ mosh_fish_ppa }}"
+    state: present
+  become: true
+  become_user: root
+  when:
+    - mosh_fish_ppa is defined
+    - mosh_fish_ppa != ''
+    - mosh_install_fish == true
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install fish
+  apt:
+    name: fish
+    state: latest
+    update_cache: true
+    cache_valid_time: 600
