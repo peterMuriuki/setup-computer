@@ -1,0 +1,16 @@
+---
+- name: Copy vault token file
+  template:
+    src: templates/vault/vault-token.j2
+    dest: '{{ mosh_home_directory }}/vault-token'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+
+- name: Copy vault pass file
+  template:
+    src: templates/vault/vault_pass.txt.j2
+    dest: '{{ mosh_home_directory }}/vault_pass.txt'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
