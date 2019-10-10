@@ -1,2 +1,6 @@
 ---
 mosh_home_directory: '/home/{{mosh_system_user}}'
+mosh_omf_download_url: https://get.oh-my.fish
+mosh_omf_download_location: /tmp/fish.install
+mosh_omf_path: '{{ mosh_home_directory }}/.local/share/omf'
+mosh_omf_config_path: '{{ mosh_home_directory }}/.config/omf'
