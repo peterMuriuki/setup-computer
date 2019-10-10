@@ -94,7 +94,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	pager = sh -c "~/.zsh/bin/diff-highlight | less -iFMRSX" -
+	# pager = sh -c "~/.zsh/bin/diff-highlight | less -iFMRSX" -
 	attributesfile = ~/.gitattributes
 
 # ignored by Git older than 1.8.2
@@ -145,8 +145,8 @@
 	smtpEncryption = tls
 	smtpServer = smtp.gmail.com
 	smtpServerPort = 587
-{% if git_user_email != '' %}
-	smtpUser = {{ git_user_email }}
+{% if mosh_git_user_email != '' %}
+	smtpUser = {{ mosh_git_user_email }}
 {% endif %}
 
 [status]
