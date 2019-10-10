@@ -1,6 +1,6 @@
 # ansible-computer-setup
 
-Ansible Role to setup a computer for myself.
+Ansible playbook to setup a computer for myself.
 
 This project is written to setup a fresh computer and automate the installation of various softwares installed as intitial setup.
 
