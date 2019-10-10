@@ -63,3 +63,12 @@
     - configure
     - dotfiles
     - vault
+
+- name: Configure ssh key
+  include_tasks: configure/ssh.yml
+  tags:
+    - configure
+    - security
+    - ssh
+  when:
+    - mosh_copy_ssh_key == true
