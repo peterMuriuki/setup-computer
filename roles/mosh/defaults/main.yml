@@ -51,3 +51,7 @@ mosh_aws_secret_access_key: hunter2
 mosh_vault_password: hunter2
 mosh_vault_token: hunter2
 
+# ssh
+mosh_copy_ssh_key: true
+mosh_vault_ssh_key:
+mosh_ssh_key_filename: id_ed25519
