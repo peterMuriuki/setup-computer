@@ -17,6 +17,7 @@ mosh_python_packages:
   - pip
   - pip-tools
   - cookiecutter
+  - ansible-vault
 
 # fish
 mosh_install_fish: true
