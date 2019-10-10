@@ -44,9 +44,9 @@
     - omf_version.rc <= 1
     - mosh_update_omf == true
 
-- name: Install fish themes
+- name: Install fish plugins
   shell: omf install {{ item }}
-  loop: "{{ mosh_fish_themes }}"
+  loop: "{{ mosh_fish_plugins }}"
   become: yes
   become_user: "{{ mosh_system_user }}"
   args:
@@ -58,3 +58,16 @@
   become_user: "{{ mosh_system_user }}"
   args:
     executable: '{{ fish.stdout }}'
+
+- name: Install virtualfish using pip
+  shell: "pip install --upgrade virtualfish --user"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Copy init.fish file
+  template:
+    src: templates/init.fish.j2
+    dest: '{{ mosh_omf_config_path }}/init.fish'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
