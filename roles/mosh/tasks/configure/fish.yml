@@ -43,3 +43,18 @@
   when:
     - omf_version.rc <= 1
     - mosh_update_omf == true
+
+- name: Install fish themes
+  shell: omf install {{ item }}
+  loop: "{{ mosh_fish_themes }}"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+
+- name: Set active fish theme
+  shell: omf theme {{ mosh_active_fish_theme }}
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
