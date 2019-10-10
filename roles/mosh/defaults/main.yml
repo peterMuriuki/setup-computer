@@ -31,3 +31,12 @@ mosh_fish_plugins:
   - kill-on-port  # https://github.com/vincentjames501/fish-kill-on-port
   - bass  # https://github.com/edc/bass
 mosh_active_fish_theme: zish
+
+# system packages
+mosh_install_system_wide_packages: true
+mosh_system_wide_packages:
+  - git
+  - git-extras
+  - tmux
+  - whois
+  - xclip
