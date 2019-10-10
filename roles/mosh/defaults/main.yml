@@ -6,10 +6,22 @@ mosh_system_user: mosh
 mosh_git_user_email: kjayanoris@gmail.com
 mosh_git_user_name: Kelvin Jayanoris
 
+# python
+mosh_install_python: true
+mosh_python_ppa: ppa:deadsnakes/ppa
+mosh_default_python_version: python3.6
+mosh_python_versions:
+  - '{{ mosh_default_python_version }}'
+  - python3.7
+mosh_python_packages:
+  - pip
+  - pip-tools
+  - cookiecutter
+
 # fish
 mosh_install_fish: true
 mosh_fish_ppa: ppa:fish-shell/release-3
 mosh_update_omf: false
-mosh_fish_themes:
+mosh_fish_plugins:
   - zish
 mosh_active_fish_theme: zish
