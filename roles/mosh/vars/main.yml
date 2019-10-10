@@ -1,2 +1,2 @@
 ---
-# vars file for mosh
+mosh_home_directory: '/home/{{mosh_system_user}}'
