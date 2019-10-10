@@ -49,6 +49,8 @@
     - configure
     - dotfiles
     - git
+  when:
+    - mosh_configure_git == true
 
 - name: Configure aws
   include_tasks: configure/aws.yml
@@ -56,6 +58,8 @@
     - configure
     - dotfiles
     - aws
+  when:
+    - mosh_configure_aws == true
 
 - name: Configure vault
   include_tasks: configure/vault_files.yml
@@ -63,6 +67,8 @@
     - configure
     - dotfiles
     - vault
+  when:
+    - mosh_configure_vault == true
 
 - name: Configure ssh key
   include_tasks: configure/ssh.yml
