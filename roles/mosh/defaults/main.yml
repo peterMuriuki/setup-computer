@@ -24,4 +24,10 @@ mosh_fish_ppa: ppa:fish-shell/release-3
 mosh_update_omf: false
 mosh_fish_plugins:
   - zish
+  - python # https://github.com/oh-my-fish/plugin-python
+  - bang-bang # https://github.com/oh-my-fish/plugin-bang-bang
+  - fonts  # https://github.com/derekstavis/plugin-fonts
+  - fuck  # https://github.com/RubieV/plugin-fuck
+  - kill-on-port  # https://github.com/vincentjames501/fish-kill-on-port
+  - bass  # https://github.com/edc/bass
 mosh_active_fish_theme: zish
