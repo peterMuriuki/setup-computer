@@ -1,0 +1,36 @@
+# virtualfish
+eval (/usr/bin/python3 -m virtualfish compat_aliases auto_activation projects)
+
+# show current virtual env
+functions -c fish_prompt _old_fish_prompt
+function fish_prompt
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
+  _old_fish_prompt
+end
+
+# locale
+set -gx  LC_ALL en_US.UTF-8
+
+# ssh-agent
+function __ssh_agent_is_started -d "check if ssh agent is already started"
+	if begin; test -f $SSH_ENV; and test -z "$SSH_AGENT_PID"; end
+		source $SSH_ENV > /dev/null
+	end
+
+	if test -z "$SSH_AGENT_PID"
+		return 1
+	end
+
+	ssh-add -l > /dev/null 2>&1
+	if test $status -eq 2
+		return 1
+	end
+end
+
+function __ssh_agent_start -d "start a new ssh agent"
+  ssh-agent -c | sed 's/^echo/#echo/' > $SSH_ENV
+  chmod 600 $SSH_ENV
+  source $SSH_ENV > /dev/null
+end
