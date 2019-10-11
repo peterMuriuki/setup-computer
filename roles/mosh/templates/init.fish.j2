@@ -1,6 +1,7 @@
 # virtualfish
 eval (/usr/bin/python3 -m virtualfish compat_aliases auto_activation projects)
 
+{% if mosh_show_current_virtual_env == true %}
 # show current virtual env
 functions -c fish_prompt _old_fish_prompt
 function fish_prompt
@@ -9,6 +10,7 @@ function fish_prompt
   end
   _old_fish_prompt
 end
+{% endif %}
 
 # locale
 set -gx  LC_ALL en_US.UTF-8
