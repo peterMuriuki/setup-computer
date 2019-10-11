@@ -1,8 +1,8 @@
 ---
 - name: Register pip check
-  shell: pip --version
-  register: pip_version
-  failed_when: pip_version.rc == 2
+  shell: which pip
+  register: registered_pip
+  failed_when: registered_pip.rc == 2
   become: yes
   become_user: "{{ mosh_system_user }}"
 
@@ -13,17 +13,17 @@
   become: yes
   become_user: "{{ mosh_system_user }}"
   when:
-    - pip_version.rc > 1
+    - registered_pip.rc > 1
 
 - name: Install pip
   shell: '{{ mosh_default_python_version }} {{ mosh_pip_download_location }} --user'
   become: yes
   become_user: "{{ mosh_system_user }}"
   when:
-    - pip_version.rc > 1
+    - registered_pip.rc > 1
 
 - name: Install Python packages using pip
-  shell: "pip install --upgrade {{ item }} --user"
+  shell: "{{ registered_pip.stdout }} install --upgrade {{ item }} --user"
   become: yes
   become_user: "{{ mosh_system_user }}"
   loop: "{{ mosh_python_packages }}"
