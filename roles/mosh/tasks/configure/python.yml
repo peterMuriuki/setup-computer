@@ -1,6 +1,6 @@
 ---
 - name: Register pip check
-  shell: which pip
+  shell: pip --version
   register: registered_pip
   failed_when: registered_pip.rc == 2
   become: yes
@@ -22,8 +22,13 @@
   when:
     - registered_pip.rc > 1
 
+- name: Ensure ansible can find pip
+  shell: '{{ mosh_default_python_version }} {{ mosh_pip_download_location }} --user'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
 - name: Install Python packages using pip
-  shell: "{{ registered_pip.stdout }} install --upgrade {{ item }} --user"
+  shell: "{{ mosh_pip_location }} install --upgrade {{ item }} --user"
   become: yes
   become_user: "{{ mosh_system_user }}"
   loop: "{{ mosh_python_packages }}"
