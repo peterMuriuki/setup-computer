@@ -29,7 +29,7 @@ mosh_fish_plugins:
   - '{{ mosh_active_fish_theme }}'
   - sushi
   - bobthefish
-  - es
+  - spacefish
   - python # https://github.com/oh-my-fish/plugin-python
   - bang-bang # https://github.com/oh-my-fish/plugin-bang-bang
   - fonts  # https://github.com/derekstavis/plugin-fonts
