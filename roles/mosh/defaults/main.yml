@@ -27,6 +27,9 @@ mosh_update_omf: false
 mosh_active_fish_theme: zish
 mosh_fish_plugins:
   - '{{ mosh_active_fish_theme }}'
+  - sushi
+  - bobthefish
+  - es
   - python # https://github.com/oh-my-fish/plugin-python
   - bang-bang # https://github.com/oh-my-fish/plugin-bang-bang
   - fonts  # https://github.com/derekstavis/plugin-fonts
