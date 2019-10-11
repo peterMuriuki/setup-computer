@@ -78,3 +78,12 @@
     - ssh
   when:
     - mosh_copy_ssh_key == true
+
+- name: Configure tmux
+  include_tasks: configure/tmux.yml
+  tags:
+    - configure
+    - shell
+    - tmux
+  when:
+    - mosh_configure_tmux == true
