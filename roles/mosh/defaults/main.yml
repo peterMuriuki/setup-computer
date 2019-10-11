@@ -42,6 +42,7 @@ mosh_system_wide_packages:
   - tmux
   - whois
   - xclip
+  - fonts-powerline
 
 # aws
 mosh_configure_aws: true
@@ -58,3 +59,22 @@ mosh_vault_token: hunter2
 mosh_copy_ssh_key: true
 mosh_vault_ssh_key:
 mosh_ssh_key_filename: id_ed25519
+
+# tmux
+mosh_configure_tmux: true
+mosh_tmux_config_git_url: https://github.com/gpakosz/.tmux.git
+mosh_tmux_config_git_version: master
+mosh_tmux_extra_configs:
+  - '# managed by Ansible'
+  - tmux_conf_theme_left_separator_main='\uE0B0'
+  - tmux_conf_theme_left_separator_sub='\uE0B1'
+  - tmux_conf_theme_right_separator_main='\uE0B2'
+  - tmux_conf_theme_right_separator_sub='\uE0B3'
+  - tmux_conf_battery_status_charging='🔌  '    # U+1F50C
+  - tmux_conf_battery_status_discharging='🔋  ' # U+1F50B
+  - '# replace C-b by C-a instead of using both prefixes'
+  - '# set -gu prefix2'
+  - '# unbind C-a'
+  - '# unbind C-b'
+  - '# set -g prefix C-a'
+  - '# bind C-a send-prefix'

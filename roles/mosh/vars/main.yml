@@ -10,3 +10,7 @@ mosh_omf_path: '{{ mosh_home_directory }}/.local/share/omf'
 mosh_omf_config_path: '{{ mosh_home_directory }}/.config/omf'
 
 mosh_aws_config_directory: '{{ mosh_home_directory }}/.aws'
+
+mosh_tmux_config_download_location: /tmp/tmux-config
+mosh_tmux_config_file: '{{ mosh_home_directory }}/.tmux.conf'
+mosh_tmux_local_config_file: '{{ mosh_home_directory }}/.tmux.conf.local'
