@@ -5,13 +5,13 @@
     dest: '{{ mosh_tmux_config_download_location }}'
     version: '{{ mosh_tmux_config_git_version }}'
 
-- name: Copy tmux.conf
-  copy:
-    src: '{{ mosh_tmux_config_download_location }}/.tmux.conf'
-    dest: '{{ mosh_tmux_config_file }}'
+- name: Create symbolic link for tmux.conf
+  file:
+    src: "{{ mosh_tmux_config_download_location }}/.tmux.conf"
+    path: '{{ mosh_tmux_config_file }}'
+    state: link
     owner: '{{ mosh_system_user }}'
     group: '{{ mosh_system_user }}'
-    mode: '0644'
 
 - name: Copy tmux.conf.local
   copy:
@@ -31,7 +31,13 @@
     group: '{{ mosh_system_user }}'
   loop: '{{ mosh_tmux_extra_configs }}'
 
+- name: Determine fish shell executable location
+  command: which fish
+  register: fish
+
 - name: Activate tmux configs
   shell: "tmux source {{ mosh_tmux_config_file }}"
+  args:
+    executable: '{{ fish.stdout }}'
   become: yes
   become_user: "{{ mosh_system_user }}"
