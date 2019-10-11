@@ -1,0 +1,37 @@
+---
+- name: Download tmux conf
+  git:
+    repo: '{{ mosh_tmux_config_git_url }}'
+    dest: '{{ mosh_tmux_config_download_location }}'
+    version: '{{ mosh_tmux_config_git_version }}'
+
+- name: Copy tmux.conf
+  copy:
+    src: '{{ mosh_tmux_config_download_location }}/.tmux.conf'
+    dest: '{{ mosh_tmux_config_file }}'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+
+- name: Copy tmux.conf.local
+  copy:
+    src: '{{ mosh_tmux_config_download_location }}/.tmux.conf.local'
+    dest: '{{ mosh_tmux_local_config_file }}'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+
+- name: Insert a line at the end of a file.
+  lineinfile:
+    path: '{{ mosh_tmux_local_config_file }}'
+    line: '{{ item }}'
+    state: present
+    mode: '0644'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+  loop: '{{ mosh_tmux_extra_configs }}'
+
+- name: Activate tmux configs
+  shell: "tmux source {{ mosh_tmux_config_file }}"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
