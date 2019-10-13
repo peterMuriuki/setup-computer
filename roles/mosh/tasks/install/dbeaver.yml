@@ -1,0 +1,29 @@
+---
+- name: Check if dbeaver is installed
+  shell: test -e {{ mosh_dbeaver_location }}
+  register: dbeaver_check
+  failed_when: dbeaver_check.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Download dbeaver
+  get_url:
+    url: '{{ mosh_dbeaver_download_url }}'
+    dest: '{{ mosh_dbeaver_download_location }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  when:
+    - dbeaver_check.rc > 0
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+  when:
+    - dbeaver_check.rc > 0
+
+- name: Install dbeaver
+  shell: gdebi {{ mosh_dbeaver_download_location }} --non-interactive
+  become: True
+  become_user: root
+  when:
+    - dbeaver_check.rc > 0
