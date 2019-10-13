@@ -19,6 +19,7 @@ ansible-playbook playbook.yml -vv --ask-sudo-pass
 - nodejs
 - yarn
 - n
+- dbeaver
 
 ## Things configured
 
