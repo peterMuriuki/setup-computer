@@ -37,6 +37,9 @@ mosh_fish_plugins:
   - kill-on-port  # https://github.com/vincentjames501/fish-kill-on-port
   - bass  # https://github.com/edc/bass
 mosh_show_current_virtual_env: true
+mosh_fish_set_locale: true
+mosh_install_fisher: false
+mosh_set_ssh_agent: true
 
 # system packages
 mosh_install_system_wide_packages: true
