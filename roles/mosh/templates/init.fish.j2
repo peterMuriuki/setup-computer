@@ -12,9 +12,20 @@ function fish_prompt
 end
 {% endif %}
 
+{% if mosh_fish_set_locale == true %}
 # locale
 set -gx  LC_ALL en_US.UTF-8
+{% endif %}
 
+{% if mosh_install_fisher == true %}
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+{% endif %}
+
+{% if mosh_set_ssh_agent == true %}
 # ssh-agent
 function __ssh_agent_is_started -d "check if ssh agent is already started"
 	if begin; test -f $SSH_ENV; and test -z "$SSH_AGENT_PID"; end
@@ -36,3 +47,4 @@ function __ssh_agent_start -d "start a new ssh agent"
   chmod 600 $SSH_ENV
   source $SSH_ENV > /dev/null
 end
+{% endif %}
