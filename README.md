@@ -13,8 +13,15 @@ ansible-playbook playbook.yml -vv --ask-sudo-pass
 ## Software installed
 
 - fish
+- qgis
+- mosh
+- gdebi-core
+- nodejs
+- yarn
+- n
 
 ## Things configured
 
 - git
 - fish
+- tmux
