@@ -4,6 +4,8 @@
     repo: '{{ mosh_tmux_config_git_url }}'
     dest: '{{ mosh_tmux_config_download_location }}'
     version: '{{ mosh_tmux_config_git_version }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
 
 - name: Create symbolic link for tmux.conf
   file:
