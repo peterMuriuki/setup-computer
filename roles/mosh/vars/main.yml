@@ -20,3 +20,7 @@ mosh_yarn_sources_list: /etc/apt/sources.list.d/yarn.list
 mosh_node_location: /usr/local/bin/node
 mosh_yarn_location: /usr/bin/yarn
 mosh_n_location: /usr/bin/n
+
+mosh_dbeaver_location: /usr/bin/dbeaver
+mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+mosh_dbeaver_download_location: /tmp/dbeaver-ce_latest_amd64.deb
