@@ -88,3 +88,6 @@ mosh_install_yarn: true
 mosh_node_version: 12.x
 mosh_yarn_download_url: https://dl.yarnpkg.com/debian/pubkey.gpg
 mosh_yarn_sources_url: https://dl.yarnpkg.com/debian/
+
+# dbeaver
+mosh_install_dbeaver: true
