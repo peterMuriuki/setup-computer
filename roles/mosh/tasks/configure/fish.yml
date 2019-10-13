@@ -60,7 +60,7 @@
     executable: '{{ fish.stdout }}'
 
 - name: Install virtualfish using pip
-  shell: "pip install --upgrade virtualfish --user"
+  shell: "{{ mosh_pip_location }} install --upgrade virtualfish --user"
   become: yes
   become_user: "{{ mosh_system_user }}"
 
