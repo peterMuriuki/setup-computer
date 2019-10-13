@@ -71,3 +71,13 @@
     owner: '{{ mosh_system_user }}'
     group: '{{ mosh_system_user }}'
     mode: '0644'
+
+- name: Copy fisherfile
+  template:
+    src: templates/fishfile.j2
+    dest: '{{ mosh_fisherfile_location }}'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+  when:
+    - mosh_install_fisher == true
