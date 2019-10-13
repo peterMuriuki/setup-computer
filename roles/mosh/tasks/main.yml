@@ -105,3 +105,12 @@
     - yarn
   when:
     - mosh_install_yarn == true
+
+- name: Install dbeaver
+  include_tasks: install/dbeaver.yml
+  tags:
+    - install
+    - tools
+    - dbeaver
+  when:
+    - mosh_install_dbeaver == true
