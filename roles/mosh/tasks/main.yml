@@ -114,3 +114,12 @@
     - dbeaver
   when:
     - mosh_install_dbeaver == true
+
+- name: Install spotify
+  include_tasks: install/spotify.yml
+  tags:
+    - install
+    - tools
+    - spotify
+  when:
+    - mosh_install_spotify == true
