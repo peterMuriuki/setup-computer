@@ -56,6 +56,13 @@ mosh_system_wide_packages:
   - python3-dev
   - python3-setuptools
   - redis-server
+  - postgresql-10
+  - postgis
+  - mysql
+
+# environment variables
+mosh_env_vars:
+  TESTVARX: 'yes'
 
 # aws
 mosh_configure_aws: true
