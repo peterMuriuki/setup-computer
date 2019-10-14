@@ -25,3 +25,8 @@ mosh_n_location: /usr/bin/n
 mosh_dbeaver_location: /usr/bin/dbeaver
 mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 mosh_dbeaver_download_location: /tmp/dbeaver-ce_latest_amd64.deb
+
+mosh_spotify_location: /usr/bin/spotify
+mosh_spotify_download_location: https://download.spotify.com/debian/pubkey.gpg
+mosh_spotify_repository_url: http://repository.spotify.com
+mosh_spotify_sources_list: /etc/apt/sources.list.d/spotify.list
