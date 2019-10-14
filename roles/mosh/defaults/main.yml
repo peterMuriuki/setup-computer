@@ -58,7 +58,7 @@ mosh_system_wide_packages:
   - redis-server
   - postgresql-10
   - postgis
-  - mysql
+  - mysql-server
 
 # environment variables
 mosh_env_vars:
@@ -101,3 +101,6 @@ mosh_yarn_sources_url: https://dl.yarnpkg.com/debian/
 
 # dbeaver
 mosh_install_dbeaver: true
+
+# spotify
+mosh_install_spotify: true
