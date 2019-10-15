@@ -3,13 +3,14 @@ mosh_home_directory: '/home/{{mosh_system_user}}'
 
 mosh_pip_download_url: https://bootstrap.pypa.io/get-pip.py
 mosh_pip_download_location: /tmp/get-pip.py
-mosh_pip_location: /home/vagrant/.local/bin/pip
+mosh_pip_location: /home/{{ mosh_system_user }}/.local/bin/pip
 
 mosh_omf_download_url: https://get.oh-my.fish
 mosh_omf_download_location: /tmp/fish.install
 mosh_omf_path: '{{ mosh_home_directory }}/.local/share/omf'
 mosh_omf_config_path: '{{ mosh_home_directory }}/.config/omf'
 mosh_fisherfile_location: '{{ mosh_home_directory }}/.config/fish/fishfile'
+mosh_fish_location: /usr/bin/fish
 
 mosh_aws_config_directory: '{{ mosh_home_directory }}/.aws'
 
