@@ -19,7 +19,7 @@ mosh_tmux_config_file: '{{ mosh_home_directory }}/.tmux.conf'
 mosh_tmux_local_config_file: '{{ mosh_home_directory }}/.tmux.conf.local'
 
 mosh_yarn_sources_list: /etc/apt/sources.list.d/yarn.list
-mosh_node_location: /usr/local/bin/node
+mosh_node_location: /usr/bin/node
 mosh_yarn_location: /usr/bin/yarn
 mosh_n_location: /usr/bin/n
 
