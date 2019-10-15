@@ -6,6 +6,7 @@ mosh_system_user: mosh
 mosh_configure_git: true
 mosh_git_user_email: kjayanoris@gmail.com
 mosh_git_user_name: Kelvin Jayanoris
+mosh_gh_token:
 
 # python
 mosh_install_python: true
@@ -74,6 +75,9 @@ mosh_aws_secret_access_key: hunter2
 mosh_configure_vault: true
 mosh_vault_password: hunter2
 mosh_vault_token: hunter2
+mosh_vault_bin_path: /usr/local/bin/vault
+mosh_vault_addr: http://example.com
+mosh_vault_login_user: moshthepitt
 
 # ssh
 mosh_copy_ssh_key: true
