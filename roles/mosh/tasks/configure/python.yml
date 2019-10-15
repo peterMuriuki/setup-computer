@@ -26,6 +26,8 @@
   shell: '{{ mosh_default_python_version }} {{ mosh_pip_download_location }} --user'
   become: yes
   become_user: "{{ mosh_system_user }}"
+  when:
+    - registered_pip.rc > 1
 
 - name: Install Python packages using pip
   shell: "{{ mosh_pip_location }} install --upgrade {{ item }} --user"
