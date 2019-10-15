@@ -17,6 +17,18 @@ end
 set -gx  LC_ALL en_US.UTF-8
 {% endif %}
 
+{% if mosh_configure_vault == true %}
+# vault
+set -gx  VAULT_ADDR {{ mosh_vault_addr }}
+set -gx  VAULT_BIN_PATH {{ mosh_vault_bin_path }}
+set -gx  VAULT_LOGIN_USER {{ mosh_vault_login_user }}
+{% endif %}
+
+{% if mosh_gh_token and mosh_gh_token != '' %}
+# github token
+set -gx  GH_TOKEN {{ mosh_gh_token }}
+{% endif %}
+
 {% if mosh_install_fisher == true %}
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
