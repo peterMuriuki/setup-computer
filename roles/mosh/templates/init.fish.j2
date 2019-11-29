@@ -29,6 +29,11 @@ set -gx  VAULT_LOGIN_USER {{ mosh_vault_login_user }}
 set -gx  GH_TOKEN {{ mosh_gh_token }}
 {% endif %}
 
+{% if mosh_install_golang == true %}
+# golang
+set PATH {{ mosh_golang_location }} $PATH
+{% endif %}
+
 {% if mosh_install_fisher == true %}
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
