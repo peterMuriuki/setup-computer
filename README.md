@@ -20,6 +20,10 @@ ansible-playbook playbook.yml -vv --ask-sudo-pass
 - yarn
 - n
 - dbeaver
+- go
+- python
+- postgresql
+- neovim
 
 ## Things configured
 
