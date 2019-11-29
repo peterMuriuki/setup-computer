@@ -106,6 +106,10 @@ mosh_node_version: 12.x
 mosh_yarn_download_url: https://dl.yarnpkg.com/debian/pubkey.gpg
 mosh_yarn_sources_url: https://dl.yarnpkg.com/debian/
 
+# golang
+mosh_install_golang: true
+mosh_golang_download_url: https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
+
 # dbeaver
 mosh_install_dbeaver: true
 mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
