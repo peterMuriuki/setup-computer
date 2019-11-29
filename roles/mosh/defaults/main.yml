@@ -20,6 +20,7 @@ mosh_python_packages:
   - pip-tools
   - cookiecutter
   - ansible-vault
+  - pipenv
 
 # fish
 mosh_install_fish: true
