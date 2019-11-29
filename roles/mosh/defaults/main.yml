@@ -6,6 +6,7 @@ mosh_system_user: mosh
 mosh_configure_git: true
 mosh_git_user_email: kjayanoris@gmail.com
 mosh_git_user_name: Kelvin Jayanoris
+mosh_gh_token:
 
 # python
 mosh_install_python: true
@@ -14,15 +15,18 @@ mosh_default_python_version: python3.6
 mosh_python_versions:
   - '{{ mosh_default_python_version }}'
   - python3.7
+mosh_pip_download_url: https://bootstrap.pypa.io/get-pip.py
 mosh_python_packages:
   - pip
   - pip-tools
   - cookiecutter
   - ansible-vault
+  - pipenv
 
 # fish
 mosh_install_fish: true
 mosh_fish_ppa: ppa:fish-shell/release-3
+mosh_omf_download_url: https://get.oh-my.fish
 mosh_update_omf: false
 mosh_active_fish_theme: zish
 mosh_fish_plugins:
@@ -37,6 +41,9 @@ mosh_fish_plugins:
   - kill-on-port  # https://github.com/vincentjames501/fish-kill-on-port
   - bass  # https://github.com/edc/bass
 mosh_show_current_virtual_env: true
+mosh_fish_set_locale: true
+mosh_install_fisher: false
+mosh_set_ssh_agent: true
 
 # system packages
 mosh_install_system_wide_packages: true
@@ -47,6 +54,19 @@ mosh_system_wide_packages:
   - whois
   - xclip
   - fonts-powerline
+  - qgis
+  - mosh
+  - gdebi-core
+  - python3-dev
+  - python3-setuptools
+  - redis-server
+  - postgresql-10
+  - postgis
+  - mysql-server
+
+# environment variables
+mosh_env_vars:
+  TESTVARX: 'yes'
 
 # aws
 mosh_configure_aws: true
@@ -58,6 +78,9 @@ mosh_aws_secret_access_key: hunter2
 mosh_configure_vault: true
 mosh_vault_password: hunter2
 mosh_vault_token: hunter2
+mosh_vault_bin_path: /usr/local/bin/vault
+mosh_vault_addr: http://example.com
+mosh_vault_login_user: moshthepitt
 
 # ssh
 mosh_copy_ssh_key: true
@@ -75,3 +98,23 @@ mosh_tmux_extra_configs:
   - tmux_conf_theme_right_separator_sub='\uE0B3'
   - tmux_conf_battery_status_charging='🔌  '    # U+1F50C
   - tmux_conf_battery_status_discharging='🔋  ' # U+1F50B
+
+# nodejs
+mosh_install_node: true
+mosh_install_yarn: true
+mosh_node_version: 12.x
+mosh_yarn_download_url: https://dl.yarnpkg.com/debian/pubkey.gpg
+mosh_yarn_sources_url: https://dl.yarnpkg.com/debian/
+
+# golang
+mosh_install_golang: true
+mosh_golang_download_url: https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
+
+# dbeaver
+mosh_install_dbeaver: true
+mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+
+# spotify
+mosh_install_spotify: true
+mosh_spotify_download_url: https://download.spotify.com/debian/pubkey.gpg
+mosh_spotify_repository_url: http://repository.spotify.com

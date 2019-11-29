@@ -1,17 +1,25 @@
 ---
+- name: Check if fish is installed
+  shell: test -e {{ mosh_fish_location }}
+  register: fish_check
+  failed_when: fish_check.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
 - name: Add fish PPA
-  apt_repository:
-    repo: "{{ mosh_fish_ppa }}"
-    state: present
-  become: true
+  shell: add-apt-repository {{ mosh_fish_ppa }} -y
+  become: yes
   become_user: root
   when:
     - mosh_fish_ppa is defined
     - mosh_fish_ppa != ''
+    - fish_check.rc > 0
 
 - name: Update apt cache
   apt:
     update_cache: true
+  when:
+    - fish_check.rc > 0
 
 - name: Install fish
   apt:
@@ -19,3 +27,5 @@
     state: latest
     update_cache: true
     cache_valid_time: 600
+  when:
+    - fish_check.rc > 0

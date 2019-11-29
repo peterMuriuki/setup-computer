@@ -1,17 +1,32 @@
 ---
 mosh_home_directory: '/home/{{mosh_system_user}}'
 
-mosh_pip_download_url: https://bootstrap.pypa.io/get-pip.py
 mosh_pip_download_location: /tmp/get-pip.py
-mosh_pip_location: /home/vagrant/.local/bin/pip
+mosh_pip_location: /home/{{ mosh_system_user }}/.local/bin/pip
 
-mosh_omf_download_url: https://get.oh-my.fish
 mosh_omf_download_location: /tmp/fish.install
 mosh_omf_path: '{{ mosh_home_directory }}/.local/share/omf'
 mosh_omf_config_path: '{{ mosh_home_directory }}/.config/omf'
+mosh_fisherfile_location: '{{ mosh_home_directory }}/.config/fish/fishfile'
+mosh_fish_location: /usr/bin/fish
 
 mosh_aws_config_directory: '{{ mosh_home_directory }}/.aws'
 
 mosh_tmux_config_download_location: '{{ mosh_home_directory }}/.tmux'
 mosh_tmux_config_file: '{{ mosh_home_directory }}/.tmux.conf'
 mosh_tmux_local_config_file: '{{ mosh_home_directory }}/.tmux.conf.local'
+
+mosh_yarn_sources_list: /etc/apt/sources.list.d/yarn.list
+mosh_node_location: /usr/bin/node
+mosh_yarn_location: /usr/bin/yarn
+mosh_n_location: /usr/bin/n
+
+mosh_golang_location: /usr/local/go/bin
+mosh_golang_extract_location: /usr/local
+mosh_golang_download_location: /tmp/go1.latest.linux-amd64.tar.gz
+
+mosh_dbeaver_location: /usr/bin/dbeaver
+mosh_dbeaver_download_location: /tmp/dbeaver-ce_latest_amd64.deb
+
+mosh_spotify_location: /usr/bin/spotify
+mosh_spotify_sources_list: /etc/apt/sources.list.d/spotify.list

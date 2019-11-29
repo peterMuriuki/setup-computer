@@ -87,3 +87,48 @@
     - tmux
   when:
     - mosh_configure_tmux == true
+
+- name: Install nodejs
+  include_tasks: install/node.yml
+  tags:
+    - install
+    - tools
+    - nodejs
+  when:
+    - mosh_install_node == true
+
+- name: Install yarn
+  include_tasks: install/yarn.yml
+  tags:
+    - install
+    - tools
+    - yarn
+  when:
+    - mosh_install_yarn == true
+
+- name: Install golang
+  include_tasks: install/go.yml
+  tags:
+    - install
+    - lang
+    - go
+  when:
+    - mosh_install_golang == true
+
+- name: Install dbeaver
+  include_tasks: install/dbeaver.yml
+  tags:
+    - install
+    - tools
+    - dbeaver
+  when:
+    - mosh_install_dbeaver == true
+
+- name: Install spotify
+  include_tasks: install/spotify.yml
+  tags:
+    - install
+    - tools
+    - spotify
+  when:
+    - mosh_install_spotify == true
