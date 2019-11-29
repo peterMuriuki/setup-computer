@@ -1,0 +1,25 @@
+---
+- name: Check if golang is installed
+  shell: test -e {{ mosh_golang_location }}
+  register: golang_check
+  failed_when: golang_check.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Download golang
+  get_url:
+    url: '{{ mosh_golang_download_url }}'
+    dest: '{{ mosh_golang_download_location }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  when:
+    - golang_check.rc > 0
+
+- name: Install golang
+  unarchive:
+    src: '{{ mosh_golang_download_location }}'
+    dest: '{{ mosh_golang_extract_location }}'
+  become: True
+  become_user: root
+  when:
+    - golang_check.rc > 0
