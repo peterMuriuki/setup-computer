@@ -1,11 +1,9 @@
 ---
 mosh_home_directory: '/home/{{mosh_system_user}}'
 
-mosh_pip_download_url: https://bootstrap.pypa.io/get-pip.py
 mosh_pip_download_location: /tmp/get-pip.py
 mosh_pip_location: /home/{{ mosh_system_user }}/.local/bin/pip
 
-mosh_omf_download_url: https://get.oh-my.fish
 mosh_omf_download_location: /tmp/fish.install
 mosh_omf_path: '{{ mosh_home_directory }}/.local/share/omf'
 mosh_omf_config_path: '{{ mosh_home_directory }}/.config/omf'
@@ -24,10 +22,7 @@ mosh_yarn_location: /usr/bin/yarn
 mosh_n_location: /usr/bin/n
 
 mosh_dbeaver_location: /usr/bin/dbeaver
-mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 mosh_dbeaver_download_location: /tmp/dbeaver-ce_latest_amd64.deb
 
 mosh_spotify_location: /usr/bin/spotify
-mosh_spotify_download_location: https://download.spotify.com/debian/pubkey.gpg
-mosh_spotify_repository_url: http://repository.spotify.com
 mosh_spotify_sources_list: /etc/apt/sources.list.d/spotify.list

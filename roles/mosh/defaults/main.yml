@@ -15,6 +15,7 @@ mosh_default_python_version: python3.6
 mosh_python_versions:
   - '{{ mosh_default_python_version }}'
   - python3.7
+mosh_pip_download_url: https://bootstrap.pypa.io/get-pip.py
 mosh_python_packages:
   - pip
   - pip-tools
@@ -25,6 +26,7 @@ mosh_python_packages:
 # fish
 mosh_install_fish: true
 mosh_fish_ppa: ppa:fish-shell/release-3
+mosh_omf_download_url: https://get.oh-my.fish
 mosh_update_omf: false
 mosh_active_fish_theme: zish
 mosh_fish_plugins:
@@ -106,6 +108,9 @@ mosh_yarn_sources_url: https://dl.yarnpkg.com/debian/
 
 # dbeaver
 mosh_install_dbeaver: true
+mosh_dbeaver_download_url: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 
 # spotify
 mosh_install_spotify: true
+mosh_spotify_download_url: https://download.spotify.com/debian/pubkey.gpg
+mosh_spotify_repository_url: http://repository.spotify.com
