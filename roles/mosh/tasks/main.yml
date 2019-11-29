@@ -106,6 +106,15 @@
   when:
     - mosh_install_yarn == true
 
+- name: Install golang
+  include_tasks: install/go.yml
+  tags:
+    - install
+    - lang
+    - go
+  when:
+    - mosh_install_golang == true
+
 - name: Install dbeaver
   include_tasks: install/dbeaver.yml
   tags:
