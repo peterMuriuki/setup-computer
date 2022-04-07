@@ -1,0 +1,7 @@
+---
+galaxy_info:
+  role_name: setup-computer
+  author: moshthepitt
+  description: Really simple role that sets up a fresh computer
+  license: MIT
+  min_ansible_version: 1.2

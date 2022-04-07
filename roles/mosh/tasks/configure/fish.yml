@@ -1,0 +1,83 @@
+---
+- name: Determine fish shell executable location
+  command: which fish
+  register: fish
+
+- name: Set fish as the default shell
+  user:
+    name: '{{ mosh_system_user }}'
+    shell: '{{ fish.stdout }}'
+  become: yes
+
+- name: Register omf check
+  shell: omf version
+  register: omf_version
+  failed_when: omf_version.rc == 2
+  args:
+    executable: '{{ fish.stdout }}'
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Download oh-my-fish
+  get_url:
+    url: '{{ mosh_omf_download_url }}'
+    dest: '{{ mosh_omf_download_location }}'
+  when:
+    - omf_version.rc > 1
+
+- name: Install oh-my-fish
+  shell: fish {{ mosh_omf_download_location }} --path={{ mosh_omf_path }} --config={{ mosh_omf_config_path }} --noninteractive --verbose
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+  when:
+    - omf_version.rc > 1
+
+- name: Update oh-my-fish
+  shell: omf update
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+  when:
+    - omf_version.rc <= 1
+    - mosh_update_omf == true
+
+- name: Install fish plugins
+  shell: omf install {{ item }}
+  loop: "{{ mosh_fish_plugins }}"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+
+- name: Set active fish theme
+  shell: omf theme {{ mosh_active_fish_theme }}
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+  args:
+    executable: '{{ fish.stdout }}'
+
+- name: Install virtualfish using pip
+  shell: "{{ mosh_pip_location }} install --upgrade virtualfish --user"
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Copy init.fish file
+  template:
+    src: templates/init.fish.j2
+    dest: '{{ mosh_omf_config_path }}/init.fish'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+
+- name: Copy fisherfile
+  template:
+    src: templates/fishfile.j2
+    dest: '{{ mosh_fisherfile_location }}'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+  when:
+    - mosh_install_fisher == true

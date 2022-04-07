@@ -1,0 +1,31 @@
+---
+visual_studio_code_build: insiders
+users:
+  - username: peter
+    visual_studio_code_extensions:
+      - eamodio.gitlens
+      - esbenp.prettier-vscode
+      - dbaeumer.vscode-eslint
+      - marcoms.oceanic-plus
+      - k--kato.intellij-idea-keybindings
+      - ritwickdey.LiveServer
+      - ms-python.python
+      - octref.vetur
+      - ms-azuretools.vscode-docker
+      # - ms-vscode.Go
+      - DavidAnson.vscode-markdownlint
+      - yzhang.markdown-all-in-one
+      - streetsidesoftware.code-spell-checker
+      - vscoss.vscode-ansible
+      - redhat.vscode-yaml
+      - haaaad.ansible
+      - ms-vscode.vscode-typescript-tslint-plugin
+    visual_studio_code_settings_overwrite: True
+    visual_studio_code_settings:
+      { "editor.formatOnSave": true, 
+      "workbench.editor.enablePreview": false, 
+      "files.autoSave": "afterDelay", 
+      "files.autoSaveDelay": 1000, 
+      "editor.acceptSuggestionOnEnter": "off" }
+
+git_version: "2.26.2"

@@ -1,0 +1,38 @@
+---
+- name: Check if yarn is installed
+  shell: test -e {{ mosh_yarn_location }}
+  register: yarn_check
+  failed_when: yarn_check.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Add yarn apt key
+  shell: curl -sL {{ mosh_yarn_download_url }} | sudo apt-key add -
+  become: True
+  become_user: root
+  args:
+    warn: no
+  when:
+    - yarn_check.rc > 0
+
+- name: Add yarn to sources
+  shell: echo "deb {{ mosh_yarn_sources_url }} stable main" | sudo tee {{ mosh_yarn_sources_list }}
+  become: True
+  become_user: root
+  when:
+    - yarn_check.rc > 0
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+  when:
+    - yarn_check.rc > 0
+
+- name: Install yarn
+  apt:
+    name: yarn
+    state: latest
+    update_cache: true
+    cache_valid_time: 600
+  when:
+    - yarn_check.rc > 0

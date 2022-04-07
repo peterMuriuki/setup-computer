@@ -1,0 +1,3 @@
+---
+# vars file for tmux
+tmux_final_download_dir: "{{tmux_download_path}}/tmux-{{tmux-version}}"

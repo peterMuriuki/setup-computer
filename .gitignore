@@ -1,0 +1,6 @@
+*.retry
+.venv
+.vagrant/
+*.log
+inventories/
+mosh-inventory/

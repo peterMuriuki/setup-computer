@@ -1,0 +1,24 @@
+---
+- name: Run mosh role (setup a computer like mosh does)
+  hosts: all
+  connection: local
+  gather_facts: True
+
+  vars_files:
+    - vars.yml
+  roles:
+    - gantsign.visual-studio-code
+    # - formulahendry.auto-rename-tag
+    # - abusaidm.html-snippets
+  pre_tasks:
+    - name: Ensure packages are up-to-date
+      apt:
+        update_cache: True
+        cache_valid_time: 3600
+
+  # tasks:
+  #   - name: Install and configure tmux from source
+  #     block:
+        
+          
+

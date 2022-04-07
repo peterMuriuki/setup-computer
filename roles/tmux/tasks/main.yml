@@ -1,0 +1,61 @@
+---
+# tasks file for tmux
+- name: Make sure dependencies libs are installed
+  package: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libevent-dev
+    - ncurses-dev
+    - build-essential
+    - bison
+    - pkg-config
+
+- name: Download and unarchive tmux tar file
+  unarchive:
+    src: "https://github.com/tmux/tmux/releases/download/{{tmux_version}}/tmux-{{tmux-version}}.tar.gz"
+    dest: "{{tmux_final_download_dir}}"
+    creates: "{{tmux_final_download_dir}}"
+
+- name: Run tmux autoConf scripts
+  command: ./configure
+
+- name: Install tmux
+  make:
+    chdir: "{{ tmux_final_download_dir }}"
+    target: install
+  become: True
+
+- name: Download tmux conf
+  git:
+    repo: '{{ tmux_config_git_url }}'
+    dest: '{{ tmux_config_download_location }}'
+    version: '{{ tmux_config_git_version }}'
+  become: yes
+  become_user: "{{ system_user }}"
+
+- name: Create symbolic link for tmux.conf
+  file:
+    src: "{{ tmux_config_download_location }}/.tmux.conf"
+    path: '{{ tmux_config_file }}'
+    state: link
+    owner: '{{ system_user }}'
+    group: '{{ system_user }}'
+
+- name: Copy tmux.conf.local
+  copy:
+    src: '{{ tmux_config_download_location }}/.tmux.conf.local'
+    dest: '{{ tmux_local_config_file }}'
+    owner: '{{ system_user }}'
+    group: '{{ system_user }}'
+    mode: '0644'
+
+- name: Insert a line at the end of a file.
+  lineinfile:
+    path: '{{ tmux_local_config_file }}'
+    line: '{{ item }}'
+    state: present
+    mode: '0644'
+    owner: '{{ system_user }}'
+    group: '{{ system_user }}'
+  loop: '{{ tmux_extra_configs }}'

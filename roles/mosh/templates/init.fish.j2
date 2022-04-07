@@ -1,0 +1,67 @@
+# virtualfish
+eval (/usr/bin/python3 -m virtualfish compat_aliases auto_activation projects)
+
+{% if mosh_show_current_virtual_env == true %}
+# show current virtual env
+functions -c fish_prompt _old_fish_prompt
+function fish_prompt
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
+  _old_fish_prompt
+end
+{% endif %}
+
+{% if mosh_fish_set_locale == true %}
+# locale
+set -gx  LC_ALL en_US.UTF-8
+{% endif %}
+
+{% if mosh_configure_vault == true %}
+# vault
+set -gx  VAULT_ADDR {{ mosh_vault_addr }}
+set -gx  VAULT_BIN_PATH {{ mosh_vault_bin_path }}
+set -gx  VAULT_LOGIN_USER {{ mosh_vault_login_user }}
+{% endif %}
+
+{% if mosh_gh_token and mosh_gh_token != '' %}
+# github token
+set -gx  GH_TOKEN {{ mosh_gh_token }}
+{% endif %}
+
+{% if mosh_install_golang == true %}
+# golang
+set PATH {{ mosh_golang_location }} $PATH
+{% endif %}
+
+{% if mosh_install_fisher == true %}
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+{% endif %}
+
+{% if mosh_set_ssh_agent == true %}
+# ssh-agent
+function __ssh_agent_is_started -d "check if ssh agent is already started"
+	if begin; test -f $SSH_ENV; and test -z "$SSH_AGENT_PID"; end
+		source $SSH_ENV > /dev/null
+	end
+
+	if test -z "$SSH_AGENT_PID"
+		return 1
+	end
+
+	ssh-add -l > /dev/null 2>&1
+	if test $status -eq 2
+		return 1
+	end
+end
+
+function __ssh_agent_start -d "start a new ssh agent"
+  ssh-agent -c | sed 's/^echo/#echo/' > $SSH_ENV
+  chmod 600 $SSH_ENV
+  source $SSH_ENV > /dev/null
+end
+{% endif %}

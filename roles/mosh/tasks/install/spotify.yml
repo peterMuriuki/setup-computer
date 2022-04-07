@@ -1,0 +1,38 @@
+---
+- name: Check if spotify is installed
+  shell: test -e {{ mosh_spotify_location }}
+  register: spotify_check
+  failed_when: spotify_check.rc == 2
+  become: yes
+  become_user: "{{ mosh_system_user }}"
+
+- name: Add spotify apt key
+  shell: curl -sS {{ mosh_spotify_download_url }} | sudo apt-key add -
+  become: True
+  become_user: root
+  args:
+    warn: no
+  when:
+    - spotify_check.rc > 0
+
+- name: Add spotify to sources
+  shell: echo "deb {{ mosh_spotify_repository_url }} stable non-free" | sudo tee {{ mosh_spotify_sources_list }}
+  become: True
+  become_user: root
+  when:
+    - spotify_check.rc > 0
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+  when:
+    - spotify_check.rc > 0
+
+- name: Install spotify
+  apt:
+    name: spotify-client
+    state: latest
+    update_cache: true
+    cache_valid_time: 600
+  when:
+    - spotify_check.rc > 0

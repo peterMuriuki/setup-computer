@@ -1,0 +1,14 @@
+---
+- name: Copy ssh key
+  copy:
+    content: "{{ mosh_vault_ssh_key }}"
+    dest: "{{ mosh_home_directory }}/.ssh/{{ mosh_ssh_key_filename }}"
+    owner: "{{ mosh_system_user }}"
+    group: "{{ mosh_system_user }}"
+    mode: 0600
+  no_log: False
+  when:
+    - mosh_vault_ssh_key is defined
+    - mosh_vault_ssh_key is not none
+    - mosh_ssh_key_filename is defined
+    - mosh_ssh_key_filename is not none

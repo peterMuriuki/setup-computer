@@ -1,0 +1,23 @@
+---
+- name: Creates aws config directory
+  file:
+    path: '{{ mosh_aws_config_directory }}'
+    state: directory
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+
+- name: Copy aws config file
+  template:
+    src: templates/aws/config.j2
+    dest: '{{ mosh_aws_config_directory }}/config'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
+
+- name: Copy aws credentias file
+  template:
+    src: templates/aws/credentials.j2
+    dest: '{{ mosh_aws_config_directory }}/credentials'
+    owner: '{{ mosh_system_user }}'
+    group: '{{ mosh_system_user }}'
+    mode: '0644'
