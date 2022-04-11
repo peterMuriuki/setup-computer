@@ -15,7 +15,9 @@
       apt:
         update_cache: True
         cache_valid_time: 3600
-
+  tags:
+    - editors
+    - vs-code
   # tasks:
   #   - name: Install and configure tmux from source
   #     block:
