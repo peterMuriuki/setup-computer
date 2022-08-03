@@ -39,8 +39,52 @@ nvm install --lts
 # sdkman
 curl -s "https://get.sdkman.io" | bash
 
-sudo apt install default-jre
+# look into tmux config dotfile
+sudo apt install default-jre tmux htop
 sdkman install kotlin
 
 # install jetbrains toolkit
 curl https://gist.githubusercontent.com/greeflas/431bc50c23532eee8a7d6c1d603f3921/raw | bash
+
+# install google-chrome
+curl -s https://gist.githubusercontent.com/diloabininyeri/637f0353394b95ade468d340f5079ad6/raw/29972821609d98527981e4d5c56d61014d4b67d0/google%2520chrome%2520install%2520on%2520ubuntu%252020%2520bash%2520script | bash
+
+# Install brave browser
+sudo apt install apt-transport-https curl
+
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt update
+
+sudo apt install brave-browser
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
+sudo apt-get update && sudo apt-get install vagrant
+
+sudo apt-get install podman
+
+# docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+ # Add to sources
+echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" \
+    | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+
+# Refresh repository sources and install Insomnia
+sudo apt-get update
+sudo apt-get install insomnia
