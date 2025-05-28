@@ -1,0 +1,20 @@
+# Shortcuts
+
+alias reload="source ~/.bash_profile"
+alias _="sudo"
+alias g="git"
+alias rr="rm -rf"
+
+# Directory listing and navigation
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"                  # Go to previous dir with -
+alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+

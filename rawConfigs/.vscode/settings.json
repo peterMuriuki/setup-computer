@@ -1,0 +1,16 @@
+{
+"workbench.settings.editor": "json",
+"workbench.iconTheme": "vscode-icons",
+"workbench.colorTheme": "GitHub Dark Default",
+"editor.tabSize": 2,
+"editor.lineNumbers": "interval",
+"workbench.tree.indent": 10,
+"files.autoSave": "afterDelay",
+"workbench.editor.enablePreview": false,
+  "[json][jsonc][yaml][scss][typescript][javascript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "bradymholt.pgformatter"
+  },
+}

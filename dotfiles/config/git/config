@@ -1,0 +1,77 @@
+[user]
+  name = Peter Muriuki
+  email = pmuriuki98@gmail.com
+
+[github]
+  user=peterMuriuki
+
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  filemode = false
+  trustctime = false
+  pager = delta
+  ignorecase = false
+  untrackedCache = true
+
+[pull]
+  rebase = true
+
+[rerere]
+  enabled = true
+
+[rebase]
+  autoStash = true
+
+[init]
+  defaultBranch = main
+
+[push]
+  default = simple
+  followTags = true
+
+[fetch]
+  prune = true
+
+[grep]
+  lineNumber = true
+
+[help]
+  autocorrect = 1
+
+[color]
+  ui = auto
+
+[web]
+  browser = firefox
+
+[merge]
+  tool = kdiff3
+
+[difftool]
+  prompt = false
+
+[alias]
+  c = commit
+  b = branch
+  d = diff
+  s = status
+  ch = checkout
+  cm = commit -m
+  contrib = shortlog --summary --numbered
+  cane = git commit --amend --no-edit
+  diffstat = "!f() { if [ $# -eq 0 ]; then git show --shortstat HEAD | tail -1; else git show --shortstat $1 | tail -1; fi; }; f"
+	ds = -c delta.side-by-side=true diff
+	fc = "log --max-parents=0 --pretty=format:'%ad' --date=format:'%Y-%m-%d' -n 1"
+  dc = diff --cached
+  l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+  g = grep --break --heading --line-number
+  ll = log --graph --abbrev-commit --pretty=oneline
+	lm = log --pretty=format:'* %s (%h)'
+	now = "!f() { GIT_SEQUENCE_EDITOR=: git rebase -i HEAD~${1:-1} --exec \"git commit --amend --no-edit --date=\\\"$(date)\\\"\"; }; f"
+	p = push
+  pf = push --force
+	rh = reset --hard HEAD
+	ra = rebase --abort
+	rc = rebase --continue
