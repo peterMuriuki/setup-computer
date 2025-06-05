@@ -419,7 +419,7 @@ podman: apt-sys-deps
 
 snap-installs: apt-sys-deps
 	@echo "Installing snap packages"
-	sudo snap install discord 
+	sudo snap install discord surfshark
 	sudo snap install sublime-text --classic
 
 # Clean up downloaded files (not a full uninstall)
