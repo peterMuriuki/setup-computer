@@ -15,3 +15,9 @@ ansible-galaxy install -r requirements.yml
 
 
 ** We use the shell scripts to do normal environment and tool support to run the playbook and then it calls the ansible scripts to setup everything else.
+
+
+
+TODO:
+- git gpg automation 
+- interactive non login shell does not seem to be aware of bash_profile changes
