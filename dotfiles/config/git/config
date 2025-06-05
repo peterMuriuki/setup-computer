@@ -30,10 +30,13 @@
 [push]
   default = simple
   followTags = true
+  autoSetupRemote = true
 
 [fetch]
   prune = true
 
+[commit]
+  gpgsign = true
 [grep]
   lineNumber = true
 
