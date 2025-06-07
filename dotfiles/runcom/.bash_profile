@@ -6,8 +6,8 @@
 CURRENT_SCRIPT=$BASH_SOURCE
 SCRIPT_PATH=$(readlink -f $CURRENT_SCRIPT)
 DOTFILES_DIR="$(dirname $(dirname $SCRIPT_PATH))"
-echo $SCRIPT_PATH
-echo $DOTFILES_DIR
+# echo $SCRIPT_PATH
+# echo $DOTFILES_DIR
 
 # if [[ -n $CURRENT_SCRIPT && -x readlink ]]; then
 #   SCRIPT_PATH=$(readlink -n $CURRENT_SCRIPT)

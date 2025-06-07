@@ -34,11 +34,11 @@ _bash_prompt_config() {
   local BRIGHT_GREEN="${ESC_OPEN}$(_setaf 10)${ESC_CLOSE}"
   local BRIGHT_YELLOW="${ESC_OPEN}$(_setaf 11)${ESC_CLOSE}"
   local BRIGHT_BLUE="${ESC_OPEN}$(_setaf 12)${ESC_CLOSE}"
-  local BRIGHT_VIOLET="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}"
+  local BRIGHT_VIOLET="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}" # Added for venv
   local BRIGHT_CYAN="${ESC_OPEN}$(_setaf 14)${ESC_CLOSE}"
   local BRIGHT_WHITE="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
 
-  # Bold colors
+  # Bold colors (not directly used for venv in this example, but good to have)
   local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
   local RED_BOLD="${ESC_OPEN}${BOLD}$(_setaf 1)${ESC_CLOSE}"
   local GREEN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 2)${ESC_CLOSE}"
@@ -55,6 +55,7 @@ _bash_prompt_config() {
   P_GREEN=${BRIGHT_GREEN}
   P_YELLOW=${YELLOW}
   P_RED=${RED}
+  P_VENV_COLOR=${BRIGHT_VIOLET} # Color for virtual environment
   P_RESET=${RESET}
 
 }
@@ -67,6 +68,7 @@ bash_prompt_command() {
   local TRUNC_SYMBOL=".."
   local DIR=${PWD##*/}
   local P_PWD=${PWD/#$HOME/\~}
+  local P_VENV_DISPLAY="" # For displaying the virtual environment
 
   MAXLENGTH=$(( ( MAXLENGTH < ${#DIR} ) ? ${#DIR} : MAXLENGTH ))
 
@@ -82,6 +84,15 @@ bash_prompt_command() {
     echo -ne "\033]0;${P_PWD}\007"
   fi
 
+  # Parse Virtual Environment name
+  if [ -n "$VIRTUAL_ENV" ]; then
+    # Extract the basename (last part of the path) of the VIRTUAL_ENV
+    local venv_name
+    venv_name=$(basename "$VIRTUAL_ENV")
+    # Format: (venv_name) with color, followed by a white space
+    P_VENV_DISPLAY="${P_VENV_COLOR}($venv_name)${P_WHITE} "
+  fi
+
   # Parse Git branch name
   P_GIT=$(parse_git_branch)
 
@@ -90,12 +101,16 @@ bash_prompt_command() {
     P_EXIT+="${P_RED}✘ "
   fi
 
-  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
+  # Assemble the prompt string
+  # Added P_VENV_DISPLAY before P_USER
+  PS1="${P_EXIT}${P_VENV_DISPLAY}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
 }
 
 parse_git_branch() {
-  local OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-  if [ "$OUT" != "" ]; then echo " $OUT"; fi
+  # SCM Breeze or similar might provide better git info, this is a basic one
+  local OUT
+  OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  if [ "$OUT" != "" ]; then echo " ($OUT)"; else echo ""; fi # Ensure space or nothing
 }
 
 _bash_prompt_config
