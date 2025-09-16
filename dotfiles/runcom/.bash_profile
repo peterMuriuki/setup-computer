@@ -39,3 +39,4 @@ done
 
 unset CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 export DOTFILES_DIR
+. "$HOME/.local/share/../bin/env"

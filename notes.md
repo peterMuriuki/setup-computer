@@ -21,3 +21,6 @@ ansible-galaxy install -r requirements.yml
 TODO:
 - git gpg automation 
 - interactive non login shell does not seem to be aware of bash_profile changes
+- - automate docker compose desktop installation
+- uv
+
